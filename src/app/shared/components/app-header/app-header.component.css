@@ -15,3 +15,13 @@ ul li a:hover {
 .blog-site {
   font-weight: bold;
 }
+
+.nav-item-right{
+  position: absolute;
+  right: 16px;
+}
+
+.nav-item-second-right{
+  position: absolute;
+  right: 100px;
+}

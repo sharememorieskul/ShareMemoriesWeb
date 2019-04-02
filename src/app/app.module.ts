@@ -13,6 +13,7 @@ import { DetailsArticleComponent } from './details-article/details-article.compo
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { HighlightDirective } from './shared/directives/highlight.directive';
 import { ShortenTextPipe } from './shared/pipes/shorten-text.pipe';
+import { AuthComponent } from './auth/auth.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { ShortenTextPipe } from './shared/pipes/shorten-text.pipe';
     PageNotFoundComponent,
     HighlightDirective,
     ShortenTextPipe,
+    AuthComponent,
   ],
   imports: [
     BrowserModule,

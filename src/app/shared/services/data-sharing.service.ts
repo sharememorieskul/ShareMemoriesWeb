@@ -26,7 +26,6 @@ export class DataSharingService {
   getArticles(): Observable<Article[]> {
     return this.http.get<Article[]>(this.articlesApi)
       .pipe(
-        delay(1000),
         map((data: Article[]) => {
           return data;
         }),

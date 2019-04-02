@@ -1,0 +1,22 @@
+<div class="col-md-8 offset-md-2">
+  <form #authForm="ngForm">
+    <div class="form-group">
+      <label for="email-input">Email address</label>
+      <input type="email" [(ngModel)]="authModel.email" name="email" class="form-control" id="email-input"
+        placeholder="Enter email" #emailControl="ngModel" required email>
+    </div>
+    <div class="form-group">
+      <label for="password-input">Password</label>
+      <input type="password" [(ngModel)]="authModel.password" name="password" class="form-control" id="password"
+        placeholder="Password" #passwordControl="ngModel" required>
+    </div>
+    <div class="text-md-center">
+      <div *ngIf="[mode]=='sign-in';else signUpBlock">
+        <button type="submit" [disabled]="authForm.invalid" (click)="signInClicked()" class="btn btn-primary">Sign In</button>
+      </div>
+      <ng-template #signUpBlock>
+        <button type="submit" [disabled]="authForm.invalid" (click)="signUpClicked()" class="btn btn-primary">Sign Up</button>
+      </ng-template>
+    </div>
+  </form>
+</div>

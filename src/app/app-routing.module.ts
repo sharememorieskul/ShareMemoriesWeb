@@ -9,13 +9,18 @@ import { GetArticleResolverService } from './shared/resolvers/get-article-resolv
 import { GetArticlesResolverService } from './shared/resolvers/get-articles-resolver.service';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { ArticleDetailsGuardService } from './shared/guards/article-details-guard.service';
+import { AuthComponent } from './auth/auth.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
-  { path: 'dashboard', component: DashboardComponent, resolve: {getArticles: GetArticlesResolverService} },
-  { path: 'articles/:id', component: DetailsArticleComponent, resolve: {getArticle: GetArticleResolverService},
-    canActivate: [ArticleDetailsGuardService] },
+  { path: 'dashboard', component: DashboardComponent, resolve: { getArticles: GetArticlesResolverService } },
+  {
+    path: 'articles/:id', component: DetailsArticleComponent, resolve: { getArticle: GetArticleResolverService },
+    canActivate: [ArticleDetailsGuardService]
+  },
   { path: 'edit/:id', component: NewArticleComponent, canDeactivate: [CreateArticleDeactivateGuardService] },
+  { path: 'sign-in', component: AuthComponent, data: {mode: 'sign-in'} },
+  { path: 'sign-up', component: AuthComponent, data: {mode: 'sign-up'}},
   { path: 'notFound', component: PageNotFoundComponent }
 ];
 
