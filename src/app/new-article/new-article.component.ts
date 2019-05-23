@@ -2,8 +2,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { DataSharingService } from '../shared/services/data-sharing.service';
 import { Article } from '../shared/models/article.model';
+import { ArticleService } from '../shared/services/article.service';
 
 @Component({
   selector: 'app-new-post',
@@ -17,11 +17,11 @@ export class NewArticleComponent implements OnInit {
 
   article: Article = {
     title: null,
-    image: null,
-    body: null
+    imageUrl: null,
+    text: null
   };
 
-  constructor(private dataSharingService: DataSharingService,
+  constructor(private articleService: ArticleService,
               private router: Router,
               private route: ActivatedRoute) { }
 
@@ -40,14 +40,14 @@ export class NewArticleComponent implements OnInit {
     if (id === '0') {
       this.article = {
         title: null,
-        image: null,
-        body: null
+        imageUrl: null,
+        text: null
       };
       this.formTitle = 'New Article :)';
       this.articleForm.reset();
     } else {
       this.formTitle = 'Update Article';
-      this.dataSharingService.getArticle(id).subscribe(
+      this.articleService.get(id).subscribe(
         (article) => this.article = article,
         (err: any) => console.log(err)
       );
@@ -55,8 +55,8 @@ export class NewArticleComponent implements OnInit {
   }
 
   onSubmit(): void {
-    if (this.article._id == null) {
-      this.dataSharingService.addArticle(this.article).subscribe(
+    if (this.article.uuid== null) {
+      this.articleService.add(this.article).subscribe(
         (data: Article) => {
           this.articleForm.reset();
           this.router.navigate(['dashboard']);
@@ -64,7 +64,7 @@ export class NewArticleComponent implements OnInit {
         (error: any) => console.log(error)
       );
     } else {
-      this.dataSharingService.updateArticle(this.article).subscribe(
+      this.articleService.update(this.article).subscribe(
         () => {
           this.articleForm.reset();
           this.router.navigate(['dashboard']);

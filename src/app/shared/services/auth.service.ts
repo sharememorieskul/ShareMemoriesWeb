@@ -12,20 +12,20 @@ export class AuthService {
   public static userLoggedInEvent: EventEmitter<any> = new EventEmitter<any>();
   public static userLogoutEvent: EventEmitter<any> = new EventEmitter<any>();
 
-  private apiPath = 'http://localhost:56396/account';
+  private apiPath = 'https://afternoon-refuge-61557.herokuapp.com/users';
   constructor(
     private http: HttpClient
   ) { }
 
   register(model: AuthModel): Observable<void> {
-    return this.http.post<void>(`${this.apiPath}/register`, model, {
+    return this.http.post<void>(this.apiPath, model, {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
       })
     });
   }
   login(model: AuthModel): Observable<TokenModel> {
-    return this.http.post<TokenModel>(`${this.apiPath}/login`, model, {
+    return this.http.post<TokenModel>(`${this.apiPath}/token`, model, {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
       })

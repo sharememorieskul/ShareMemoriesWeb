@@ -1,22 +1,22 @@
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from '@angular/router';
-import { DataSharingService } from '../services/data-sharing.service';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
+import { ArticleService } from '../services/article.service';
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class ArticleDetailsGuardService implements CanActivate {
-  constructor(private dataSharingService: DataSharingService,
+  constructor(private articleService: ArticleService,
               private router: Router) {
     console.log('Article details guard');
   }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot):  Observable<boolean> {
-    return this.dataSharingService.getArticle(route.paramMap.get('id'))
+    return this.articleService.get(route.paramMap.get('id'))
       .pipe(
         map(article => {
           const articleExists = !!article;

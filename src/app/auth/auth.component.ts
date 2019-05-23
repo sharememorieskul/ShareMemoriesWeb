@@ -1,12 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AuthModel } from '../shared/models/auth.model';
 import { AuthService } from '../shared/services/auth.service';
-import { ErrorModel } from '../shared/models/error.model';
 import { HttpErrorResponse } from '@angular/common/http';
 import { TokenModel } from '../shared/models/token.model';
 import { LocalStorageHelper } from '../shared/helpers/local-storage.helper';
-import { AuthViewModel } from '../shared/view-models/auth.view-model';
+import { AuthViewModel } from './auth.view-model';
 import { AuthMapper } from '../shared/mappers/auth.mapper';
 import { Constants } from '../shared/constants/constants';
 

@@ -3,18 +3,18 @@ import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/r
 import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
-import { DataSharingService } from '../services/data-sharing.service';
 import { Article } from '../models/article.model';
+import { ArticleService } from '../services/article.service';
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class GetArticlesResolverService implements Resolve<Article[] | string> {
-  constructor(private dataSharingService: DataSharingService) {}
+  constructor(private articleService: ArticleService) {}
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Article[] | string> {
-    return this.dataSharingService.getArticles()
+    return this.articleService.getAll()
       .pipe(
         catchError((err: string) => of(err))
       );

@@ -1,5 +1,5 @@
-import { AuthViewModel } from '../view-models/auth.view-model';
 import { AuthModel } from '../models/auth.model';
+import { AuthViewModel } from 'src/app/auth/auth.view-model';
 
 export class AuthMapper {
     static mapViewModelToModel(viewModel: AuthViewModel): AuthModel {

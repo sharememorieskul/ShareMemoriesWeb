@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { Article } from '../shared/models/article.model';
-import { DataSharingService } from '../shared/services/data-sharing.service';
+import { ArticleService } from '../shared/services/article.service';
 
 @Component({
   selector: 'app-single-post',
@@ -19,7 +19,7 @@ export class SingleArticleComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
               private router: Router,
-              private dataSharingService: DataSharingService) {}
+              private articleService: ArticleService) {}
 
   ngOnInit(): void {
     this.selectedArticleId = this.route.snapshot.paramMap.get('id');
@@ -27,7 +27,7 @@ export class SingleArticleComponent implements OnInit {
 
 
   readArticle() {
-    this.router.navigate(['/articles', this.article._id], {
+    this.router.navigate(['/articles', this.article.uuid], {
       queryParams: {
         'searchTerm': this.searchInput,
       }
@@ -35,14 +35,14 @@ export class SingleArticleComponent implements OnInit {
   }
 
   updateArticle() {
-    this.router.navigate(['/edit', this.article._id]);
+    this.router.navigate(['/edit', this.article.uuid]);
   }
 
   deleteArticle() {
-    this.dataSharingService.deleteArticle(this.article._id).subscribe(
-      () => console.log(`Article with Id = ${this.article._id} deleted.`),
+    this.articleService.delete(this.article.uuid).subscribe(
+      () => console.log(`Article with Id = ${this.article.uuid} deleted.`),
       (err) => console.log(err)
     );
-    this.deletingArticle.emit(this.article._id);
+    this.deletingArticle.emit(this.article.uuid);
   }
 }

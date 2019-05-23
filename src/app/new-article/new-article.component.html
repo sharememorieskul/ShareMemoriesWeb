@@ -25,7 +25,7 @@
         [class.red-text]="!image.valid && image.touched"
         for="image">Image Url</label>
       <input
-        [(ngModel)]="article.image"
+        [(ngModel)]="article.imageUrl"
         [class.is-invalid]="!image.valid && image.touched"
         [class.is-valid]="image.valid"
         name="image"
@@ -41,7 +41,7 @@
     </div>
     <div class="form-group">
       <button
-        *ngIf="article.image !== '' && article.image !== null"
+        *ngIf="article.imageUrl !== '' && article.imageUrl !== null"
         type="button"
         (click)="toggleImageShow()"
         class="btn btn-info">
@@ -51,15 +51,15 @@
     <div class="form-group">
       <img
         class="img-fluid"
-        [src]="article.image"
-        *ngIf="showImage && article.image !== '' && article.image !== null">
+        [src]="article.imageUrl"
+        *ngIf="showImage && article.imageUrl !== '' && article.imageUrl !== null">
     </div>
     <div class="form-group">
       <label
         [class.red-text]="!body.valid && body.touched"
         for="body">Article Content</label>
       <textarea
-        [(ngModel)]="article.body"
+        [(ngModel)]="article.text"
         [class.is-invalid]="!body.valid && body.touched"
         [class.is-valid]="body.valid"
         name="body"

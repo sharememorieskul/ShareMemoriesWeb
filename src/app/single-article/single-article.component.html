@@ -1,18 +1,18 @@
 <div class="card">
-  <img class="card-img-top" [src]="article.image" alt="an article image should be here">
+  <img class="card-img-top" [src]="article.imageUrl" alt="an article image should be here">
   <div class="card-body">
     <h5
       class="card-title"
-      [class.visited-article]="selectedArticleId === article._id">{{ article.title | uppercase }}</h5>
+      [class.visited-article]="selectedArticleId === article.uuid">{{ article.title | uppercase }}</h5>
     <p
       appHighlight
       class="card-text"
-      [class.visited-article-background]="selectedArticleId === article._id">{{ article.body | shortenText }}</p>
+      [class.visited-article-background]="selectedArticleId === article.uuid">{{ article.text | shortenText }}</p>
     <!--<a class="btn btn-primary">Read the post</a>-->
     <div class="d-flex justify-content-start align-items-start">
       <button
         class="btn btn-primary"
-        [class.visited-article]="selectedArticleId === article._id" (click)="readArticle()">Read</button>
+        [class.visited-article]="selectedArticleId === article.uuid" (click)="readArticle()">Read</button>
       <button class="btn btn-warning" (click)="updateArticle()">Update</button>
 
       <span *ngIf="confirmDelete">

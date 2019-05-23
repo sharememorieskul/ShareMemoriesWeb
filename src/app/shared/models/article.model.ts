@@ -1,10 +1,13 @@
-export class Article {
-  _id?: string;
-  title: string;
-  image: string;
-  body: string;
-  created?: {
-    type: Date;
-    default: Date;
-  };
+export class Article
+{
+    uuid?: string=null;
+    createdDate?: Date=null;
+    text: string=null;
+    title: string=null;
+    imageUrl: string=null;
+    ownerUuid?: string=null;
+    ownerEmail?: string=null;
+    ownerImage?: string=null;
+    ownerFirstName?: string=null;
+    ownerLastName?: string=null;
 }

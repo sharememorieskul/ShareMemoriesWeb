@@ -69,9 +69,9 @@ export class DashboardComponent implements OnInit {
     // }
   }
 
-  onDeletingArticle(id: string) {
-    const i = this.filteredArticles.findIndex(article => article._id === id); // Index for deleting from the filtered array of articles
-    const j = this.articles.findIndex(article => article._id === id); // Index for deleting from the base array of articles
+  onDeletingArticle(uuid: string) {
+    const i = this.filteredArticles.findIndex(article => article.uuid === uuid); // Index for deleting from the filtered array of articles
+    const j = this.articles.findIndex(article => article.uuid === uuid); // Index for deleting from the base array of articles
     if (i !== -1) {
       this.filteredArticles.splice(i, 1);
       this.articles.splice(j, 1);

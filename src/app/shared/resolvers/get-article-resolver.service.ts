@@ -2,17 +2,17 @@ import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
 import { Observable } from 'rxjs';
 
-import { DataSharingService } from '../services/data-sharing.service';
 import { Article } from '../models/article.model';
+import { ArticleService } from '../services/article.service';
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class GetArticleResolverService implements Resolve<Article> {
-  constructor(private dataSharingService: DataSharingService) {}
+  constructor(private articleService: ArticleService) {}
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Article> | Promise<Article> | Article {
-    return this.dataSharingService.getArticle(route.params['id']);
+    return this.articleService.get(route.params['id']);
   }
 }
