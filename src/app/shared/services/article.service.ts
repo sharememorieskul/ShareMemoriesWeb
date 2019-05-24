@@ -26,6 +26,7 @@ export class ArticleService {
   }
 
   getAll(): Observable<Article[]> {
+
     return this.http.get<Article[]>(this.apiPath, this.getOptionsRequest())
       .pipe(
         map((data: Article[]) => {
@@ -67,12 +68,10 @@ export class ArticleService {
   }
 
   getOptionsRequest() {
-    const token: string = LocalStorageHelper.getItem(Constants.localStorageTokenKey);
-    return {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Authorization': token
-      })
-    }
+    const tokenObject = LocalStorageHelper.getItem(Constants.localStorageTokenKey);
+    let headers=new HttpHeaders();
+    headers=headers.append('Content-Type','application/json');
+    headers=headers.append('Authorization',tokenObject.token);
+    return {headers: headers};
   }
 }
