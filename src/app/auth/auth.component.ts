@@ -49,7 +49,7 @@ export class AuthComponent implements OnInit {
       this.redirectToPageAfterDelay('/', 1500);
     },
       (errorResponse: HttpErrorResponse) => {
-        this.showErrorAlert(errorResponse.error.errorCode);
+        this.showErrorAlert(errorResponse.error.message);
       }
     );
   }
@@ -64,7 +64,7 @@ export class AuthComponent implements OnInit {
       this.redirectToPageAfterDelay('/sign-in', 1500);
     },
       (errorResponse: HttpErrorResponse) => {
-        this.showErrorAlert(errorResponse.error.errorCode);
+        this.showErrorAlert(errorResponse.error.message);
       }
     );
   }

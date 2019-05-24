@@ -22,7 +22,7 @@
       </span>
       <button *ngIf="!confirmDelete" class="btn btn-danger" (click)="confirmDelete = true">Delete</button>
 
-      <span class="created-date ml-auto">{{ article.created | date }}</span>
+      <span class="created-date ml-auto">{{article.ownerEmail}}</span>
     </div>
   </div>
 </div>

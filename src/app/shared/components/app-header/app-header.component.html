@@ -5,7 +5,7 @@
   <li class="nav-item">
     <a class="nav-link" routerLink="dashboard">Dashboard <span class="sr-only">(current)</span></a>
   </li>
-  <li class="nav-item">
+  <li class="nav-item" *ngIf="_userIsLogged">
     <a class="nav-link" routerLink="edit/0">New Post</a>
   </li>
   <li *ngIf="!_userIsLogged" class="nav-item nav-item-second-right">
