@@ -15,13 +15,13 @@ import { Constants } from '../shared/constants/constants';
 })
 export class AuthComponent implements OnInit {
 
-  private _mode: string;
-  private _showSuccessAlert = false;
-  private _showErrorAlert = false;
-  private _successAlert: string;
-  private _errorAlert: string;
-  private _blockControls = false;
-  private _authViewModel: AuthViewModel =
+  public _mode: string;
+  public _showSuccessAlert = false;
+  public _showErrorAlert = false;
+  public _successAlert: string;
+  public _errorAlert: string;
+  public _blockControls = false;
+  public _authViewModel: AuthViewModel =
     {
       email: '',
       password: '',

@@ -23,7 +23,7 @@ export class SingleArticleComponent implements OnInit,OnDestroy {
   @Input() searchInput: string;
   @Output() deletingArticle: EventEmitter<string> = new EventEmitter<string>();
   private ngUnsubscribe$=new Subject<void>();
-  private loggedUserEmail: string=null;
+  public loggedUserEmail: string=null;
 
   constructor(private route: ActivatedRoute,
               private router: Router,

@@ -9,7 +9,7 @@ import { Constants } from '../../constants/constants';
   styleUrls: ['./app-header.component.css']
 })
 export class AppHeaderComponent implements OnInit {
-  private _userIsLogged = false;
+  public _userIsLogged = false;
   constructor(
   ) { }
 
