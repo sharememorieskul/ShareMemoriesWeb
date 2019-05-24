@@ -7,13 +7,16 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "postinstall": "ng build --aot -prod"
   },
   "private": true,
   "dependencies": {
     "@angular/animations": "~7.1.0",
+    "@angular/cli": "~7.1.0",
     "@angular/common": "~7.1.0",
     "@angular/compiler": "~7.1.0",
+    "@angular/compiler-cli": "~7.1.0",
     "@angular/core": "~7.1.0",
     "@angular/forms": "~7.1.0",
     "@angular/platform-browser": "~7.1.0",
@@ -21,8 +24,11 @@
     "@angular/router": "~7.1.0",
     "bootstrap": "^4.3.1",
     "core-js": "^2.5.4",
+    "express": "^4.17.0",
+    "path": "^0.12.7",
     "rxjs": "~6.3.3",
     "tslib": "^1.9.0",
+    "typescript": "~3.1.6",
     "zone.js": "~0.8.26"
   },
   "devDependencies": {
@@ -46,5 +52,9 @@
     "tslint": "~5.11.0",
     "typescript": "~3.1.6",
     "webpack-dev-server": "^3.1.14"
+  },
+  "engines": {
+    "node": "10.15.3",
+    "npm": "6.4.1"
   }
 }
