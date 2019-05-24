@@ -1,8 +1,14 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { Article } from '../shared/models/article.model';
 import { ArticleService } from '../shared/services/article.service';
+import { LocalStorageHelper } from '../shared/helpers/local-storage.helper';
+import { TokenModel } from '../shared/models/token.model';
+import { Subject } from 'rxjs';
+import { Constants } from '../shared/constants/constants';
+import { takeUntil } from 'rxjs/operators';
+import { AuthService } from '../shared/services/auth.service';
 
 @Component({
   selector: 'app-single-post',
@@ -10,12 +16,14 @@ import { ArticleService } from '../shared/services/article.service';
   styleUrls: ['./single-article.component.css']
 })
 
-export class SingleArticleComponent implements OnInit {
+export class SingleArticleComponent implements OnInit,OnDestroy {
   public confirmDelete = false;
   public selectedArticleId: string;
   @Input() public article: Article;
   @Input() searchInput: string;
   @Output() deletingArticle: EventEmitter<string> = new EventEmitter<string>();
+  private ngUnsubscribe$=new Subject<void>();
+  private loggedUserEmail: string=null;
 
   constructor(private route: ActivatedRoute,
               private router: Router,
@@ -23,6 +31,23 @@ export class SingleArticleComponent implements OnInit {
 
   ngOnInit(): void {
     this.selectedArticleId = this.route.snapshot.paramMap.get('id');
+    
+    const tokenModel: TokenModel=LocalStorageHelper.getItem(Constants.localStorageTokenKey);
+    if(tokenModel!=null)
+    {
+      this.loggedUserEmail=tokenModel.email;
+    }
+    
+    AuthService.userLogoutEvent.pipe(takeUntil(this.ngUnsubscribe$)).subscribe
+    (
+      ()=>{
+        this.loggedUserEmail=null;
+      }
+    )
+  }
+  ngOnDestroy(): void {
+    this.ngUnsubscribe$.next();
+    this.ngUnsubscribe$.complete();
   }
 
 

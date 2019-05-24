@@ -12,15 +12,15 @@
     <div class="d-flex justify-content-start align-items-start">
       <button
         class="btn btn-primary"
-        [class.visited-article]="selectedArticleId === article.uuid" (click)="readArticle()">Read</button>
-      <button class="btn btn-warning" (click)="updateArticle()">Update</button>
+        [class.visited-article]="selectedArticleId === article.uuid" (click)="readArticle()" *ngIf="loggedUserEmail!=null">Read</button>
+      <button class="btn btn-warning" (click)="updateArticle()" *ngIf="loggedUserEmail==article.ownerEmail">Update</button>
 
       <span *ngIf="confirmDelete">
         <!-- <span class="delete-message">Delete, sure?</span> -->
         <button class="btn btn-danger" (click)="deleteArticle()">Yes</button>
         <button class="btn btn-success" (click)="confirmDelete = false">No</button>
       </span>
-      <button *ngIf="!confirmDelete" class="btn btn-danger" (click)="confirmDelete = true">Delete</button>
+      <button *ngIf="!confirmDelete && loggedUserEmail==article.ownerEmail" class="btn btn-danger" (click)="confirmDelete = true">Delete</button>
 
       <span class="created-date ml-auto">{{article.ownerEmail}}</span>
     </div>

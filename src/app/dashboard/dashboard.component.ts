@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Router } from '@angular/router';
 
 import { Article } from '../shared/models/article.model';
 
@@ -10,13 +9,12 @@ import { Article } from '../shared/models/article.model';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
+
   articles: Article[] = [];
-
   filteredArticles: Article[];
-
   error: string;
-
   private prSearchInput: string;
+
 
   get searchInput(): string {
     return this.prSearchInput;
@@ -31,11 +29,10 @@ export class DashboardComponent implements OnInit {
     return this.articles.filter(article => article.title.toLowerCase().indexOf(searchInput.toLowerCase()) !== -1);
   }
 
-  constructor(private activatedRoute: ActivatedRoute,
-              private router: Router) { }
+  constructor(private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
-    const resolvedData: Article[] | string = this.activatedRoute.snapshot.data['getArticles'];
+    const resolvedData: Article[] = this.activatedRoute.snapshot.data['getArticles'];
 
     if (Array.isArray(resolvedData)) {
       this.articles = resolvedData;
