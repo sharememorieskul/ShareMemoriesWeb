@@ -16,7 +16,7 @@
       <button class="btn btn-warning" (click)="updateArticle()">Update</button>
 
       <span *ngIf="confirmDelete">
-        <span class="delete-message">Delete, sure?</span>
+        <!-- <span class="delete-message">Delete, sure?</span> -->
         <button class="btn btn-danger" (click)="deleteArticle()">Yes</button>
         <button class="btn btn-success" (click)="confirmDelete = false">No</button>
       </span>

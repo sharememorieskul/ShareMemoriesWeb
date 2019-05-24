@@ -71,7 +71,10 @@ export class ArticleService {
     const tokenObject = LocalStorageHelper.getItem(Constants.localStorageTokenKey);
     let headers=new HttpHeaders();
     headers=headers.append('Content-Type','application/json');
-    headers=headers.append('Authorization',tokenObject.token);
+    if(tokenObject!=null)
+    {
+      headers=headers.append('Authorization',tokenObject.token);
+    }
     return {headers: headers};
   }
 }
