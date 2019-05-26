@@ -14,6 +14,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { HighlightDirective } from './shared/directives/highlight.directive';
 import { ShortenTextPipe } from './shared/pipes/shorten-text.pipe';
 import { AuthComponent } from './auth/auth.component';
+import { UserProfileComponent } from './shared/components/user-profile/user-profile.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { AuthComponent } from './auth/auth.component';
     HighlightDirective,
     ShortenTextPipe,
     AuthComponent,
+    UserProfileComponent,
   ],
   imports: [
     BrowserModule,

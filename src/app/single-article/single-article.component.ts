@@ -16,14 +16,14 @@ import { AuthService } from '../shared/services/auth.service';
   styleUrls: ['./single-article.component.css']
 })
 
-export class SingleArticleComponent implements OnInit,OnDestroy {
+export class SingleArticleComponent implements OnInit, OnDestroy {
   public confirmDelete = false;
   public selectedArticleId: string;
   @Input() public article: Article;
   @Input() searchInput: string;
   @Output() deletingArticle: EventEmitter<string> = new EventEmitter<string>();
-  private ngUnsubscribe$=new Subject<void>();
-  public loggedUserEmail: string=null;
+  private ngUnsubscribe$ = new Subject<void>();
+  public loggedUserEmail: string = null;
 
   constructor(private route: ActivatedRoute,
               private router: Router,
@@ -31,25 +31,24 @@ export class SingleArticleComponent implements OnInit,OnDestroy {
 
   ngOnInit(): void {
     this.selectedArticleId = this.route.snapshot.paramMap.get('id');
-    
-    const tokenModel: TokenModel=LocalStorageHelper.getItem(Constants.localStorageTokenKey);
-    if(tokenModel!=null)
-    {
-      this.loggedUserEmail=tokenModel.email;
+
+    const tokenModel: TokenModel = LocalStorageHelper.getItem(Constants.localStorageTokenKey);
+    if (tokenModel != null) {
+      this.loggedUserEmail = tokenModel.email;
     }
-    
+
     AuthService.userLogoutEvent.pipe(takeUntil(this.ngUnsubscribe$)).subscribe
     (
-      ()=>{
-        this.loggedUserEmail=null;
+      () => {
+        this.loggedUserEmail = null;
       }
-    )
+    );
   }
+
   ngOnDestroy(): void {
     this.ngUnsubscribe$.next();
     this.ngUnsubscribe$.complete();
   }
-
 
   readArticle() {
     this.router.navigate(['/articles', this.article.uuid], {

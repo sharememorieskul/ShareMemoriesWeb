@@ -43,7 +43,7 @@ export class DashboardComponent implements OnInit {
     if (this.activatedRoute.snapshot.queryParamMap.has('searchTerm')) {
       this.searchInput = this.activatedRoute.snapshot.queryParamMap.get('searchTerm');
     } else {
-      this.filteredArticles = this.articles.map(x=>x);  //deep copy
+      this.filteredArticles = this.articles.map(x => x);  // deep copy
     }
   }
 

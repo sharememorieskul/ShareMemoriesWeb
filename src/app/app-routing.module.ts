@@ -10,6 +10,7 @@ import { GetArticlesResolverService } from './shared/resolvers/get-articles-reso
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { ArticleDetailsGuardService } from './shared/guards/article-details-guard.service';
 import { AuthComponent } from './auth/auth.component';
+import { UserProfileComponent } from './shared/components/user-profile/user-profile.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
@@ -20,7 +21,8 @@ const routes: Routes = [
   },
   { path: 'edit/:id', component: NewArticleComponent, canDeactivate: [CreateArticleDeactivateGuardService] },
   { path: 'sign-in', component: AuthComponent, data: {mode: 'sign-in'} },
-  { path: 'sign-up', component: AuthComponent, data: {mode: 'sign-up'}},
+  { path: 'sign-up', component: AuthComponent, data: {mode: 'sign-up'} },
+  { path: 'user-profile', component: UserProfileComponent },
   { path: 'notFound', component: PageNotFoundComponent }
 ];
 
