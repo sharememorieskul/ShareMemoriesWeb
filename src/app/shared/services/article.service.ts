@@ -69,11 +69,10 @@ export class ArticleService {
 
   getOptionsRequest() {
     const tokenObject = LocalStorageHelper.getItem(Constants.localStorageTokenKey);
-    let headers=new HttpHeaders();
-    headers=headers.append('Content-Type','application/json');
-    if(tokenObject!=null)
-    {
-      headers=headers.append('Authorization',tokenObject.token);
+    let headers = new HttpHeaders();
+    headers = headers.append('Content-Type', 'application/json');
+    if (tokenObject != null) {
+      headers = headers.append('Authorization', tokenObject.token);
     }
     return {headers: headers};
   }

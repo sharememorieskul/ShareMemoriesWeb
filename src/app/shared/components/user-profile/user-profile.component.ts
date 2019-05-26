@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Article } from '../../models/article.model';
 
 @Component({
   selector: 'app-user-profile',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserProfileComponent implements OnInit {
 
+  userEmail: string;
+  userArticles: Article[] = [];
+
   constructor() { }
 
   ngOnInit() {
+    this.userEmail = this.getUserInfo().email;
+  }
+
+  private getUserInfo() {
+    return JSON.parse(localStorage.getItem('session-token'));
   }
 
 }
