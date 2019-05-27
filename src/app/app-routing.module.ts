@@ -5,6 +5,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { DetailsArticleComponent } from './details-article/details-article.component';
 import { NewArticleComponent } from './new-article/new-article.component';
 import { CreateArticleDeactivateGuardService } from './shared/guards/create-article-deactivate-guard.service';
+import { UserRegistrationGuardService } from './shared/guards/user-registration-guard.service';
 import { GetArticleResolverService } from './shared/resolvers/get-article-resolver.service';
 import { GetArticlesResolverService } from './shared/resolvers/get-articles-resolver.service';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
@@ -20,8 +21,8 @@ const routes: Routes = [
     canActivate: [ArticleDetailsGuardService]
   },
   { path: 'edit/:id', component: NewArticleComponent, canDeactivate: [CreateArticleDeactivateGuardService] },
-  { path: 'sign-in', component: AuthComponent, data: {mode: 'sign-in'} },
-  { path: 'sign-up', component: AuthComponent, data: {mode: 'sign-up'} },
+  { path: 'sign-in', component: AuthComponent, data: {mode: 'sign-in'}, canDeactivate: [UserRegistrationGuardService] },
+  { path: 'sign-up', component: AuthComponent, data: {mode: 'sign-up'}, canDeactivate: [UserRegistrationGuardService] },
   { path: 'user-profile', component: UserProfileComponent },
   { path: 'notFound', component: PageNotFoundComponent }
 ];

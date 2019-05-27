@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { NgForm } from '@angular/forms';
 import { AuthService } from '../shared/services/auth.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { TokenModel } from '../shared/models/token.model';
@@ -15,6 +16,7 @@ import { Constants } from '../shared/constants/constants';
 })
 export class AuthComponent implements OnInit {
 
+  @ViewChild('authForm') public authForm: NgForm;
   public _mode: string;
   public _showSuccessAlert = false;
   public _showErrorAlert = false;
@@ -43,7 +45,7 @@ export class AuthComponent implements OnInit {
   loginClicked() {
     const model = AuthMapper.mapViewModelToModel(this._authViewModel);
     this.authService.login(model).subscribe((tokenModel: TokenModel) => {
-      tokenModel.email=model.email;
+      tokenModel.email = model.email;
       LocalStorageHelper.setItem(Constants.localStorageTokenKey, tokenModel);
       this.showSuccessAlert('You have been successfully logged in');
       AuthService.userLoggedInEvent.emit();
