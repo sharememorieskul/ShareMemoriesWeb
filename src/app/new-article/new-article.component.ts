@@ -18,7 +18,8 @@ export class NewArticleComponent implements OnInit {
   article: Article = {
     title: null,
     imageUrl: null,
-    text: null
+    text: null,
+    isPublic: null
   };
 
   constructor(private articleService: ArticleService,
@@ -41,7 +42,8 @@ export class NewArticleComponent implements OnInit {
       this.article = {
         title: null,
         imageUrl: null,
-        text: null
+        text: null,
+        isPublic: null
       };
       this.formTitle = 'New Article :)';
       this.articleForm.reset();
@@ -55,7 +57,7 @@ export class NewArticleComponent implements OnInit {
   }
 
   onSubmit(): void {
-    if (this.article.uuid== null) {
+    if (this.article.uuid === null) {
       this.articleService.add(this.article).subscribe(
         (data: Article) => {
           this.articleForm.reset();

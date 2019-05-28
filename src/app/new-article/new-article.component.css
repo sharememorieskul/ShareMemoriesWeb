@@ -23,6 +23,14 @@ form div label {
   padding: 3px 0;
 }
 
+.isPublic {
+  margin-right: 0.5rem;
+}
+
+#imageToggle {
+  max-height: 300px;
+}
+
 /*style="width: 150px;"*/
 .submit-button {
   width: 150px;

@@ -51,6 +51,7 @@
     <div class="form-group">
       <img
         class="img-fluid"
+        id="imageToggle"
         [src]="article.imageUrl"
         *ngIf="showImage && article.imageUrl !== '' && article.imageUrl !== null">
     </div>
@@ -72,6 +73,16 @@
         *ngIf="!body.valid && body.touched"
         class="form-text red-text">Please enter some content</span>
     </div>
+      <h6>Do you want to make your article available for everyone?</h6>
+      <label
+        for="isPublic"
+        class="isPublic"><em>Yes</em></label>
+      <input
+        [(ngModel)]="article.isPublic"
+        name="isPublic"
+        type="checkbox"
+        id="isPublic">
+    <hr>
     <button
       [disabled]="!articleForm.valid"
       type="submit"
