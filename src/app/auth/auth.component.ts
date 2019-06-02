@@ -47,6 +47,7 @@ export class AuthComponent implements OnInit {
     this.authService.login(model).subscribe((tokenModel: TokenModel) => {
       tokenModel.email = model.email;
       LocalStorageHelper.setItem(Constants.localStorageTokenKey, tokenModel);
+      this.authForm.reset();
       this.showSuccessAlert('You have been successfully logged in');
       AuthService.userLoggedInEvent.emit();
       this.redirectToPageAfterDelay('/', 1500);
@@ -63,6 +64,7 @@ export class AuthComponent implements OnInit {
     }
     const model = AuthMapper.mapViewModelToModel(this._authViewModel);
     this.authService.register(model).subscribe(() => {
+      this.authForm.reset();
       this.showSuccessAlert('You have been successfully registered');
       this.redirectToPageAfterDelay('/sign-in', 1500);
     },

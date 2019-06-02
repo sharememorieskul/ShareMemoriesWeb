@@ -1,28 +1,69 @@
 <div class="col-md-8 offset-md-2">
   <form #authForm="ngForm">
     <div class="form-group">
-      <label for="email-input">Email address</label>
-      <input type="email" [(ngModel)]="_authViewModel.email" name="email" class="form-control" id="email-input"
-        placeholder="Enter email" #emailControl="ngModel" required email [disabled]="_blockControls">
+      <label
+        [class.red-text]="!emailControl.valid && emailControl.touched"
+        for="email-input">Email address</label>
+      <input
+        type="email"
+        [(ngModel)]="_authViewModel.email"
+        [class.is-invalid]="!emailControl.valid && emailControl.touched"
+        [class.is-valid]="emailControl.valid"
+        name="email"
+        class="form-control"
+        id="email-input"
+        placeholder="Enter email"
+        #emailControl="ngModel"
+        required
+        email
+        [disabled]="_blockControls">
     </div>
+    <div
+      *ngIf="!emailControl.valid && emailControl.touched"
+      class="alert alert-danger red-text"
+      role="alert">Please enter a valid email ex.: example@example.com</div>
     <div class="form-group">
-      <label for="password-input">Password</label>
-      <input type="password" [(ngModel)]="_authViewModel.password" name="password" class="form-control" id="password-input"
-        placeholder="Password" #passwordControl="ngModel" required [disabled]="_blockControls" >
+      <label
+        for="password-input">Password</label>
+      <input
+        type="password"
+        [(ngModel)]="_authViewModel.password"
+        name="password"
+        class="form-control"
+        id="password-input"
+        placeholder="Password"
+        #passwordControl="ngModel"
+        required
+        [disabled]="_blockControls" >
     </div>
     <div *ngIf="[_mode]=='sign-up'" class="form-group">
-      <label for="confirm-password-input">Confirm password</label>
-      <input type="password" [(ngModel)]="_authViewModel.confirmPassword" name="confirm-password" class="form-control" id="confirm-password-input"
-        placeholder="Confirm password" #passwordControl="ngModel" required [disabled]="_blockControls" >
+      <label
+        for="confirm-password-input">Confirm password</label>
+      <input
+        type="password"
+        [(ngModel)]="_authViewModel.confirmPassword"
+        name="confirm-password"
+        class="form-control"
+        id="confirm-password-input"
+        placeholder="Confirm password"
+        #passwordControl="ngModel"
+        required
+        [disabled]="_blockControls" >
     </div>
     <div class="text-md-center">
       <div *ngIf="[_mode]=='sign-in';else signUpBlock">
-        <button type="submit" [disabled]="authForm.invalid || _blockControls" (click)="loginClicked()" class="btn btn-primary">Sign
-          In</button>
+        <button
+          type="submit"
+          [disabled]="authForm.invalid || _blockControls"
+          (click)="loginClicked()"
+          class="btn btn-primary">Sign In</button>
       </div>
       <ng-template #signUpBlock>
-        <button type="submit" [disabled]="authForm.invalid || _blockControls" (click)="registerClicked()" class="btn btn-primary">Sign
-          Up</button>
+        <button
+          type="submit"
+          [disabled]="authForm.invalid || _blockControls"
+          (click)="registerClicked()"
+          class="btn btn-primary">Sign Up</button>
       </ng-template>
     </div>
   </form>
@@ -35,7 +76,7 @@
   </div>
   <div *ngIf="_showErrorAlert">
       <br>
-      <div class="alert alert-danger" role="alert">
+      <div class="alert alert-danger red-text" role="alert">
         {{_errorAlert}}
       </div>
     </div>
