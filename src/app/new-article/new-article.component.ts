@@ -57,7 +57,7 @@ export class NewArticleComponent implements OnInit {
   }
 
   onSubmit(): void {
-    if (this.article.uuid === null) {
+    if (this.article.uuid === undefined) {
       this.articleService.add(this.article).subscribe(
         (data: Article) => {
           this.articleForm.reset();
