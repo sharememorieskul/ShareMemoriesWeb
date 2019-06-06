@@ -4,6 +4,9 @@ import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
 import { Article } from '../models/article.model';
+import { LocalStorageHelper } from '../helpers/local-storage.helper';
+import { Constants } from '../constants/constants';
+import { HttpHeaders } from '@angular/common/http';
 import { UserService } from '../services/user.service';
 
 @Injectable({
@@ -13,8 +16,8 @@ export class GetUserArticlesResolverService implements Resolve<Article[] | strin
   constructor(private userService: UserService) { }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Article[] | string> {
-    const userId=route.params.id;
-    return this.userService.GetAllPostsCreatedByUser(userId)
+    
+    return this.userService.GetAllPostsCreatedByUser()
       .pipe(
         catchError((err: string) => of(err))
       );

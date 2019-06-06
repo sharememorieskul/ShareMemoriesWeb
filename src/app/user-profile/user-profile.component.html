@@ -1,0 +1,15 @@
+<div class="card">
+  <div class="card-header">
+    <h5>Your Profile's email is: <strong><em>{{ userEmail }}</em></strong></h5>
+  </div>
+  <div class="card-body">
+    <button class="btn btn-primary text-center">Follow</button>
+  </div>
+</div>
+
+<div *ngFor="let article of userArticles">
+  <app-single-post
+    [article]="article"></app-single-post>
+</div>
+
+<div *ngIf="error">{{ error }} :)</div>

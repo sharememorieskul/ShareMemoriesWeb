@@ -10,8 +10,6 @@ import { Constants } from '../constants/constants';
   providedIn: 'root'
 })
 export class UserService {
-
-  private readonly apiPathAllUserArticles = 'https://afternoon-refuge-61557.herokuapp.com/users/df1dec3d-a1ea-49e5-9bcb-ea304a5750d5/posts';
   private readonly apiPath = 'https://afternoon-refuge-61557.herokuapp.com/users/';
   constructor(private http: HttpClient) { }
 
@@ -25,8 +23,8 @@ export class UserService {
     return throwError('Something bad happened; please try again later.');
   }
 
-  getAllUserArticles(): Observable<Article[]> {
-    return this.http.get<Article[]>(this.apiPathAllUserArticles)
+  GetAllPostsCreatedByUser(userId: string): Observable<Article[]> {
+    return this.http.get<Article[]>(this.apiPath + userId + '/posts', this.getOptionsRequest())
       .pipe(
         map((data: Article[]) => {
           return data;
@@ -52,4 +50,5 @@ export class UserService {
     }
     return { headers: headers };
   }
+
 }

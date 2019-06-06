@@ -11,13 +11,14 @@ import { GetPublicArticlesResolverService } from './shared/resolvers/get-public-
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { ArticleDetailsGuardService } from './shared/guards/article-details-guard.service';
 import { AuthComponent } from './auth/auth.component';
-import { UserProfileComponent } from './shared/components/user-profile/user-profile.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
+import { GetAvailableArticlesResolverService } from './shared/resolvers/get-avaiable-articles-resolver.service';
 import { GetUserArticlesResolverService } from './shared/resolvers/get-user-articles-resolver.service';
 
 const routes: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
   { path: 'dashboard', component: DashboardComponent, resolve: { getArticles: GetPublicArticlesResolverService } },
-  { path: 'mywall', component: DashboardComponent, resolve: { getArticles: GetUserArticlesResolverService } },
+  { path: 'mywall', component: DashboardComponent, resolve: { getArticles: GetAvailableArticlesResolverService } },
   {
     path: 'articles/:id', component: DetailsArticleComponent, resolve: { getArticle: GetArticleResolverService },
     canActivate: [ArticleDetailsGuardService]
@@ -25,7 +26,7 @@ const routes: Routes = [
   { path: 'edit/:id', component: NewArticleComponent, canDeactivate: [CreateArticleDeactivateGuardService] },
   { path: 'sign-in', component: AuthComponent, data: {mode: 'sign-in'}, canDeactivate: [UserRegistrationGuardService] },
   { path: 'sign-up', component: AuthComponent, data: {mode: 'sign-up'}, canDeactivate: [UserRegistrationGuardService] },
-  { path: 'user-profile', component: UserProfileComponent },
+  { path: 'user-profile/:id', component: UserProfileComponent, resolve: { getArticles: GetUserArticlesResolverService } },
   { path: 'notFound', component: PageNotFoundComponent }
 ];
 

@@ -9,15 +9,14 @@ import { UserService } from '../services/user.service';
 @Injectable({
   providedIn: 'root'
 })
-export class GetUserArticlesResolverService implements Resolve<Article[] | string> {
+
+export class GetAvailableArticlesResolverService implements Resolve<Article[] | string> {
   constructor(private userService: UserService) { }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Article[] | string> {
-    const userId=route.params.id;
-    return this.userService.GetAllPostsCreatedByUser(userId)
+    return this.userService.GetAllPostsAvaiableForUser()
       .pipe(
         catchError((err: string) => of(err))
       );
   }
-
 }
