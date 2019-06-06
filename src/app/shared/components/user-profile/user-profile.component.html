@@ -5,7 +5,12 @@
   <div class="card-body">
     <h5 class="card-title">Hi Dear User. How are you today</h5>
     <p class="card-text">All of you articles are listed below :)</p>
-    <hr>
-    <div>Articles could go here, we'll see.</div>
   </div>
 </div>
+
+<div *ngFor="let article of userArticles">
+  <app-single-post
+    [article]="article"></app-single-post>
+</div>
+
+<div *ngIf="error">{{ error }} :)</div>

@@ -23,7 +23,7 @@ const routes: Routes = [
   { path: 'edit/:id', component: NewArticleComponent, canDeactivate: [CreateArticleDeactivateGuardService] },
   { path: 'sign-in', component: AuthComponent, data: {mode: 'sign-in'}, canDeactivate: [UserRegistrationGuardService] },
   { path: 'sign-up', component: AuthComponent, data: {mode: 'sign-up'}, canDeactivate: [UserRegistrationGuardService] },
-  { path: 'user-profile', component: UserProfileComponent },
+  { path: 'user-profile', component: UserProfileComponent, resolve: { getArticles: GetArticlesResolverService } },
   { path: 'notFound', component: PageNotFoundComponent }
 ];
 

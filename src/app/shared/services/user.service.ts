@@ -11,8 +11,11 @@ import { Constants } from '../constants/constants';
 })
 export class UserService {
 
-  private readonly apiPathAllUserArticles = 'https://afternoon-refuge-61557.herokuapp.com/users/df1dec3d-a1ea-49e5-9bcb-ea304a5750d5/posts';
+  // https://afternoon-refuge-61557.herokuapp.com/users/df1dec3d-a1ea-49e5-9bcb-ea304a5750d5/posts
+  private readonly apiPathAllUserArticles = 'https://afternoon-refuge-61557.herokuapp.com/users/';
   private readonly apiPath = 'https://afternoon-refuge-61557.herokuapp.com/users/';
+  // private userToken: string = LocalStorageHelper.getItem(Constants.localStorageTokenKey);
+  private userToken: string = this.getUserInfo().token;
   constructor(private http: HttpClient) { }
 
   handleError(errorResponse: HttpErrorResponse) {
@@ -25,8 +28,8 @@ export class UserService {
     return throwError('Something bad happened; please try again later.');
   }
 
-  getAllUserArticles(): Observable<Article[]> {
-    return this.http.get<Article[]>(this.apiPathAllUserArticles)
+  GetAllPostsCreatedByUser(): Observable<Article[]> {
+    return this.http.get<Article[]>(this.apiPathAllUserArticles + this.userToken + '/posts', this.getOptionsRequest())
       .pipe(
         map((data: Article[]) => {
           return data;
@@ -51,5 +54,9 @@ export class UserService {
       headers = headers.append('Authorization', tokenObject.token);
     }
     return { headers: headers };
+  }
+
+  private getUserInfo() {
+    return JSON.parse(localStorage.getItem('session-token'));
   }
 }
