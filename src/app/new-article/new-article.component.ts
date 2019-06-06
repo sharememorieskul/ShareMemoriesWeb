@@ -61,7 +61,7 @@ export class NewArticleComponent implements OnInit {
       this.articleService.add(this.article).subscribe(
         (data: Article) => {
           this.articleForm.reset();
-          this.router.navigate(['dashboard']);
+          this.router.navigate(['mywall']);
         },
         (error: any) => console.log(error)
       );
@@ -69,7 +69,7 @@ export class NewArticleComponent implements OnInit {
       this.articleService.update(this.article).subscribe(
         () => {
           this.articleForm.reset();
-          this.router.navigate(['dashboard']);
+          this.router.navigate(['mywall']);
         },
         (error: any) => console.log(error)
       );

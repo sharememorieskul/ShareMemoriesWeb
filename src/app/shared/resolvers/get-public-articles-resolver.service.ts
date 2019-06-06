@@ -14,26 +14,13 @@ import { UserService } from '../services/user.service';
   providedIn: 'root'
 })
 
-export class GetArticlesResolverService implements Resolve<Article[] | string> {
+export class GetPublicArticlesResolverService implements Resolve<Article[] | string> {
   constructor(private articleService: ArticleService, private userService: UserService) { }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Article[] | string> {
-    const userToken: string = LocalStorageHelper.getItem(Constants.localStorageTokenKey);
-    if (userToken == null) {
-      return this.articleService.getAll()
-        .pipe(
-          catchError((err: string) => of(err))
-        );
-    }
-    else {
-      return this.userService.GetAllPostsAvaiableForUser()
-        .pipe(
-          catchError((err: string) => of(err))
-        );
-    }
-
-
+    return this.articleService.getAll()
+      .pipe(
+        catchError((err: string) => of(err))
+      );
   }
-
-
 }
