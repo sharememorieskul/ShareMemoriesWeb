@@ -14,6 +14,7 @@ import { AuthComponent } from './auth/auth.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { GetAvailableArticlesResolverService } from './shared/resolvers/get-avaiable-articles-resolver.service';
 import { GetUserArticlesResolverService } from './shared/resolvers/get-user-articles-resolver.service';
+import { GetUserInfoResolverService } from './shared/resolvers/get-user-info-resolver.service';
 
 const routes: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
@@ -26,7 +27,7 @@ const routes: Routes = [
   { path: 'edit/:id', component: NewArticleComponent, canDeactivate: [CreateArticleDeactivateGuardService] },
   { path: 'sign-in', component: AuthComponent, data: {mode: 'sign-in'}, canDeactivate: [UserRegistrationGuardService] },
   { path: 'sign-up', component: AuthComponent, data: {mode: 'sign-up'}, canDeactivate: [UserRegistrationGuardService] },
-  { path: 'user-profile/:id', component: UserProfileComponent, resolve: { getArticles: GetUserArticlesResolverService } },
+  { path: 'user-profile/:id', component: UserProfileComponent, resolve: { getArticles: GetUserArticlesResolverService, getUser: GetUserInfoResolverService } },
   { path: 'notFound', component: PageNotFoundComponent }
 ];
 

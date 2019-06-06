@@ -5,6 +5,7 @@ import { Article } from '../models/article.model';
 import { catchError, map } from 'rxjs/operators';
 import { LocalStorageHelper } from '../helpers/local-storage.helper';
 import { Constants } from '../constants/constants';
+import { User } from '../models/user.model';
 
 @Injectable({
   providedIn: 'root'
@@ -41,6 +42,14 @@ export class UserService {
         catchError(this.handleError)
       );
   }
+  Get(id: string): Observable<User> {
+    return this.http.get<User>(this.apiPath + id,this.getOptionsRequest())
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
+
+
   getOptionsRequest() {
     const tokenObject = LocalStorageHelper.getItem(Constants.localStorageTokenKey);
     let headers = new HttpHeaders();

@@ -1,11 +1,10 @@
-<div class="card">
-  <div class="card-header">
-    <h5>Your Profile's email is: <strong><em>{{ userEmail }}</em></strong></h5>
-  </div>
+<div class="card text-center">
   <div class="card-body">
+    <h5>Profile's email: <strong><em>{{ userEmail }}</em></strong></h5>
     <button class="btn btn-primary text-center">Follow</button>
   </div>
 </div>
+
 
 <div *ngFor="let article of userArticles">
   <app-single-post
