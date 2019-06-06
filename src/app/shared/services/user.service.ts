@@ -15,7 +15,7 @@ export class UserService {
   private readonly apiPathAllUserArticles = 'https://afternoon-refuge-61557.herokuapp.com/users/';
   private readonly apiPath = 'https://afternoon-refuge-61557.herokuapp.com/users/';
   // private userToken: string = LocalStorageHelper.getItem(Constants.localStorageTokenKey);
-  private userToken: string = this.getUserInfo().token;
+  // private userToken: string = this.getUserInfo().token;
   constructor(private http: HttpClient) { }
 
   handleError(errorResponse: HttpErrorResponse) {
@@ -28,15 +28,15 @@ export class UserService {
     return throwError('Something bad happened; please try again later.');
   }
 
-  GetAllPostsCreatedByUser(): Observable<Article[]> {
-    return this.http.get<Article[]>(this.apiPathAllUserArticles + this.userToken + '/posts', this.getOptionsRequest())
-      .pipe(
-        map((data: Article[]) => {
-          return data;
-        }),
-        catchError(this.handleError)
-      );
-  }
+  // GetAllPostsCreatedByUser(): Observable<Article[]> {
+  //   return this.http.get<Article[]>(this.apiPathAllUserArticles + this.userToken + '/posts', this.getOptionsRequest())
+  //     .pipe(
+  //       map((data: Article[]) => {
+  //         return data;
+  //       }),
+  //       catchError(this.handleError)
+  //     );
+  // }
   GetAllPostsAvaiableForUser(): Observable<Article[]> {
     return this.http.get<Article[]>(this.apiPath + "posts",this.getOptionsRequest())
       .pipe(

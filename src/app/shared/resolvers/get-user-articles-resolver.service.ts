@@ -12,14 +12,15 @@ import { UserService } from '../services/user.service';
 @Injectable({
   providedIn: 'root'
 })
-export class GetUserArticlesResolverService implements Resolve<Article[] | string> {
+export class GetUserArticlesResolverService {
+// export class GetUserArticlesResolverService implements Resolve<Article[] | string> {
   constructor(private userService: UserService) { }
 
-  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Article[] | string> {
-    return this.userService.GetAllPostsCreatedByUser()
-      .pipe(
-        catchError((err: string) => of(err))
-      );
-  }
+  // resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Article[] | string> {
+    // return this.userService.GetAllPostsCreatedByUser()
+    //   .pipe(
+    //     catchError((err: string) => of(err))
+    //   );
+  // }
 
 }
