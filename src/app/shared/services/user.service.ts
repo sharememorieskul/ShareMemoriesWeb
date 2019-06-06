@@ -56,7 +56,7 @@ export class UserService {
     return { headers: headers };
   }
 
-  private getUserInfo() {
-    return JSON.parse(localStorage.getItem('session-token'));
-  }
+  // private getUserInfo() {
+  //   return JSON.parse(localStorage.getItem('session-token'));
+  // }
 }
