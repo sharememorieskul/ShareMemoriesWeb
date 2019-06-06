@@ -1,7 +1,7 @@
 <div class="card text-center">
   <div class="card-body">
-    <h5>Profile's email: <strong><em>{{ userEmail }}</em></strong></h5>
-    <button class="btn btn-primary text-center">Follow</button>
+    <h5>Profile's email: <strong><em>{{ user.email }}</em></strong></h5>
+    <button (click)="followClicked()" class="btn btn-primary text-center">Follow</button>
   </div>
 </div>
 

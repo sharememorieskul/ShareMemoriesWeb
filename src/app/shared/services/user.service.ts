@@ -6,6 +6,7 @@ import { catchError, map } from 'rxjs/operators';
 import { LocalStorageHelper } from '../helpers/local-storage.helper';
 import { Constants } from '../constants/constants';
 import { User } from '../models/user.model';
+import { Follower } from '../models/follower.model';
 
 @Injectable({
   providedIn: 'root'
@@ -34,7 +35,7 @@ export class UserService {
       );
   }
   GetAllPostsAvaiableForUser(): Observable<Article[]> {
-    return this.http.get<Article[]>(this.apiPath + "posts",this.getOptionsRequest())
+    return this.http.get<Article[]>(this.apiPath + "posts", this.getOptionsRequest())
       .pipe(
         map((data: Article[]) => {
           return data;
@@ -43,10 +44,16 @@ export class UserService {
       );
   }
   Get(id: string): Observable<User> {
-    return this.http.get<User>(this.apiPath + id,this.getOptionsRequest())
+    return this.http.get<User>(this.apiPath + id, this.getOptionsRequest())
       .pipe(
         catchError(this.handleError)
       );
+  }
+  Follow(userId: string) {
+    const follower = new Follower(userId);
+    return this.http.post<Article>(this.apiPath+"account/followers", follower, this.getOptionsRequest()).pipe(
+      catchError(this.handleError)
+    );
   }
 
 
