@@ -50,6 +50,12 @@ export class UserService {
         catchError(this.handleError)
       );
   }
+  GetLoggedUser(): Observable<User> {
+    return this.http.get<User>(this.apiPath + "account", this.getOptionsRequest())
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
   Follow(userId: string) {
     const follower = new Follower(userId);
     return this.http.post<Article>(this.apiPath+"account/followers", follower, this.getOptionsRequest()).pipe(

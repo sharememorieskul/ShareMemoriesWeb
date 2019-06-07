@@ -8,7 +8,7 @@
     <div class="navbar-nav">
       <a class="nav-item nav-link" routerLink="dashboard">Dashboard<span class="sr-only">(current)</span></a>
       <a class="nav-item nav-link" *ngIf="_userIsLogged" routerLink="mywall">MyWall<span class="sr-only">(current)</span></a>
-      <a class="nav-item nav-link" *ngIf="_userIsLogged" routerLink="user-profile">My Profile</a>
+      <a class="nav-item nav-link" *ngIf="_userIsLogged" routerLink="my-profile">My Profile</a>
       <a class="nav-item nav-link" *ngIf="_userIsLogged" routerLink="edit/0">New Post</a>
       <a class="nav-item nav-link nav-item-second-right" *ngIf="!_userIsLogged" routerLink="sign-up">Sign up</a>
       <a class="nav-item nav-link nav-item-right" *ngIf="!_userIsLogged" routerLink="sign-in">Sign in</a>
