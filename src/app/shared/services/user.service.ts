@@ -7,6 +7,7 @@ import { LocalStorageHelper } from '../helpers/local-storage.helper';
 import { Constants } from '../constants/constants';
 import { User } from '../models/user.model';
 import { Follower } from '../models/follower.model';
+import { TokenModel } from '../models/token.model';
 
 @Injectable({
   providedIn: 'root'
@@ -55,10 +56,18 @@ export class UserService {
       catchError(this.handleError)
     );
   }
+  Unfollow(userId: string) {
+    const follower = new Follower(userId);
+    let options=this.getOptionsRequest();
+    Object.assign(options, {body: follower});
+    return this.http.delete<Article>(this.apiPath+"account/followers", options).pipe(
+      catchError(this.handleError)
+    );
+  }
 
 
   getOptionsRequest() {
-    const tokenObject = LocalStorageHelper.getItem(Constants.localStorageTokenKey);
+    const tokenObject: TokenModel = LocalStorageHelper.getItem(Constants.localStorageTokenKey);
     let headers = new HttpHeaders();
     headers = headers.append('Content-Type', 'application/json');
     if (tokenObject != null) {

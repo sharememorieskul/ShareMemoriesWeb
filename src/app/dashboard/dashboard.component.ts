@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { Article } from '../shared/models/article.model';
-import { AuthService } from '../shared/services/auth.service';
-import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 
 @Component({
@@ -17,7 +15,6 @@ export class DashboardComponent implements OnInit {
   filteredArticles: Article[];
   error: string;
   private prSearchInput: string;
-  private ngUnsubscribe$ = new Subject<void>();
 
 
   get searchInput(): string {
@@ -30,7 +27,7 @@ export class DashboardComponent implements OnInit {
   }
 
 
-  constructor(private activatedRoute: ActivatedRoute, private router: Router) { }
+  constructor(private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
     const resolvedData: Article[] = this.activatedRoute.snapshot.data['getArticles'];
@@ -47,18 +44,7 @@ export class DashboardComponent implements OnInit {
       this.filteredArticles = this.articles.map(x => x);  // deep copy
     }
 
-    AuthService.userLogoutEvent.pipe(takeUntil(this.ngUnsubscribe$)).subscribe
-    (
-      () => {
-        this.router.navigateByUrl('dashboard');
-      }
-    );
   }
-  ngOnDestroy(): void {
-    this.ngUnsubscribe$.next();
-    this.ngUnsubscribe$.complete();
-  }
-
   onDeletingArticle(uuid: string) {
     const i = this.filteredArticles.findIndex(article => article.uuid === uuid); // Index for deleting from the filtered array of articles
     const j = this.articles.findIndex(article => article.uuid === uuid); // Index for deleting from the base array of articles

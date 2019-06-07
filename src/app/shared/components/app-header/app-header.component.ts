@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { LocalStorageHelper } from '../../helpers/local-storage.helper';
 import { Constants } from '../../constants/constants';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -11,6 +12,7 @@ import { Constants } from '../../constants/constants';
 export class AppHeaderComponent implements OnInit {
   public _userIsLogged = false;
   constructor(
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -35,6 +37,7 @@ export class AppHeaderComponent implements OnInit {
   logout() {
     LocalStorageHelper.removeItem(Constants.localStorageTokenKey);
     AuthService.userLogoutEvent.emit();
+    this.router.navigateByUrl('dashboard');
   }
 
 }

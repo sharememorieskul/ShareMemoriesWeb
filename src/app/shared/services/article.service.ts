@@ -5,6 +5,7 @@ import { map, catchError } from 'rxjs/operators';
 import { LocalStorageHelper } from '../helpers/local-storage.helper';
 import { Constants } from '../constants/constants';
 import { Article } from '../models/article.model';
+import { TokenModel } from '../models/token.model';
 
 @Injectable({
   providedIn: 'root'
@@ -68,7 +69,7 @@ export class ArticleService {
   }
 
   getOptionsRequest() {
-    const tokenObject = LocalStorageHelper.getItem(Constants.localStorageTokenKey);
+    const tokenObject: TokenModel = LocalStorageHelper.getItem(Constants.localStorageTokenKey);
     let headers = new HttpHeaders();
     headers = headers.append('Content-Type', 'application/json');
     if (tokenObject != null) {

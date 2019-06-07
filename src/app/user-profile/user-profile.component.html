@@ -1,7 +1,8 @@
 <div class="card text-center">
   <div class="card-body">
     <h5>Profile's email: <strong><em>{{ user.email }}</em></strong></h5>
-    <button (click)="followClicked()" class="btn btn-primary text-center">Follow</button>
+    <button *ngIf="!isCurrentUserProfile && !isAlreadyFollowed" (click)="followClicked()" class="btn btn-primary text-center">Follow</button>
+    <button *ngIf="!isCurrentUserProfile && isAlreadyFollowed" (click)="unfollowClicked()" class="btn btn-danger text-center">Unfollow</button>
   </div>
 </div>
 
