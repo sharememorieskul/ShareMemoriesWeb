@@ -22,7 +22,8 @@
       </span>
       <button *ngIf="!confirmDelete && loggedUserEmail==article.ownerEmail" class="btn btn-danger" (click)="confirmDelete = true">Delete</button>
 
-      <a [routerLink]="['/user-profile', article.ownerUuid]" class="created-date ml-auto">{{article.ownerEmail}} </a>
+      <a [routerLink]="['/user-profile', article.ownerUuid]" *ngIf="loggedUserEmail!=null" class="created-date ml-auto">{{article.ownerEmail}} </a>
+      <span *ngIf="loggedUserEmail==null" class="created-date ml-auto">{{article.ownerEmail}}</span>
     </div>
   </div>
 </div>

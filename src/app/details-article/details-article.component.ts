@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { Article } from '../shared/models/article.model';
+import { TokenModel } from '../shared/models/token.model';
+import { LocalStorageHelper } from '../shared/helpers/local-storage.helper';
+import { Constants } from '../shared/constants/constants';
 
 @Component({
   selector: 'app-details-article',
