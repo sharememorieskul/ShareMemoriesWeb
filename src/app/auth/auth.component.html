@@ -1,4 +1,7 @@
 <div class="col-md-8 offset-md-2">
+  <div class="alert alert-danger" *ngIf="[_mode]=='sign-in-after-fail'" role="alert">
+      Twoja sesja wygasła. Zaloguj się ponownie.
+    </div>
   <form #authForm="ngForm">
     <div class="form-group">
       <label

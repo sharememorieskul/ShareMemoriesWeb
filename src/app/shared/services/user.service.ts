@@ -1,19 +1,15 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { Article } from '../models/article.model';
 import { catchError, map } from 'rxjs/operators';
-import { LocalStorageHelper } from '../helpers/local-storage.helper';
-import { Constants } from '../constants/constants';
 import { User } from '../models/user.model';
 import { Follower } from '../models/follower.model';
-import { TokenModel } from '../models/token.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
-  private readonly apiPath = 'https://afternoon-refuge-61557.herokuapp.com/users/';
   constructor(private http: HttpClient) { }
 
   handleError(errorResponse: HttpErrorResponse) {
@@ -27,7 +23,7 @@ export class UserService {
   }
 
   GetAllPostsCreatedByUser(userId: string): Observable<Article[]> {
-    return this.http.get<Article[]>(this.apiPath + userId + '/posts', this.getOptionsRequest())
+    return this.http.get<Article[]>('users/' + userId + '/posts')
       .pipe(
         map((data: Article[]) => {
           return data;
@@ -36,7 +32,7 @@ export class UserService {
       );
   }
   GetAllPostsAvaiableForUser(): Observable<Article[]> {
-    return this.http.get<Article[]>(this.apiPath + "posts", this.getOptionsRequest())
+    return this.http.get<Article[]>("users/posts")
       .pipe(
         map((data: Article[]) => {
           return data;
@@ -45,41 +41,28 @@ export class UserService {
       );
   }
   Get(id: string): Observable<User> {
-    return this.http.get<User>(this.apiPath + id, this.getOptionsRequest())
+    return this.http.get<User>('users/'+ id)
       .pipe(
         catchError(this.handleError)
       );
   }
   GetLoggedUser(): Observable<User> {
-    return this.http.get<User>(this.apiPath + "account", this.getOptionsRequest())
+    return this.http.get<User>("users/account")
       .pipe(
         catchError(this.handleError)
       );
   }
   Follow(userId: string) {
     const follower = new Follower(userId);
-    return this.http.post<Article>(this.apiPath+"account/followers", follower, this.getOptionsRequest()).pipe(
+    return this.http.post<Article>("users/account/followers", follower).pipe(
       catchError(this.handleError)
     );
   }
   Unfollow(userId: string) {
     const follower = new Follower(userId);
-    let options=this.getOptionsRequest();
-    Object.assign(options, {body: follower});
-    return this.http.delete<Article>(this.apiPath+"account/followers", options).pipe(
+    let options={headers: {}, body: follower}
+    return this.http.delete<Article>("users/account/followers",options).pipe(
       catchError(this.handleError)
     );
   }
-
-
-  getOptionsRequest() {
-    const tokenObject: TokenModel = LocalStorageHelper.getItem(Constants.localStorageTokenKey);
-    let headers = new HttpHeaders();
-    headers = headers.append('Content-Type', 'application/json');
-    if (tokenObject != null) {
-      headers = headers.append('Authorization', tokenObject.token);
-    }
-    return { headers: headers };
-  }
-
 }

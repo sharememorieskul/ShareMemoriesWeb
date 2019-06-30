@@ -28,6 +28,7 @@ const routes: Routes = [
   },
   { path: 'edit/:id', component: NewArticleComponent, canDeactivate: [CreateArticleDeactivateGuardService] },
   { path: 'sign-in', component: AuthComponent, data: {mode: 'sign-in'}, canDeactivate: [UserRegistrationGuardService] },
+  { path: 'sign-in-after-fail', component: AuthComponent, data: {mode: 'sign-in-after-fail'}, canDeactivate: [UserRegistrationGuardService] },
   { path: 'sign-up', component: AuthComponent, data: {mode: 'sign-up'}, canDeactivate: [UserRegistrationGuardService] },
   { path: 'user-profile/:id', component: UserProfileComponent, resolve: { getArticles: GetUserArticlesResolverService, getUser: GetUserInfoResolverService } },
   { path: 'my-profile', component: UserProfileComponent, resolve: { getArticles: GetLoggedUserArticlesResolverService, getUser: GetLoggedUserInfoResolverService } },
