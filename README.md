@@ -3,8 +3,9 @@ Backend: https://github.com/Sperc/ShareMemories
 Authors:
 
 Frontend:
-@michal-korniak
 @vdatsyshyn
+@michal-korniak
+
 
 Backend:
 @sperc
