@@ -13,7 +13,7 @@ export class RedirectToDictComponent implements OnInit {
   ngOnInit() {
     const searchValue=this.route.snapshot.queryParams['search'];
     console.log(searchValue);
-    window.location.href = `https://translate.google.pl/?hl=pl#view=home&op=translate&sl=en&tl=pl&text=${searchValue}`;
+    window.location.href = `https://translate.google.pl/m?hl=pl&sl=en&tl=pl&ie=UTF-8&prev=_m&q=${searchValue}`;
   }
 
   
