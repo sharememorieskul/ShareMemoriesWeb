@@ -33,7 +33,10 @@ const routes: Routes = [
   { path: 'user-profile/:id', component: UserProfileComponent, resolve: { getArticles: GetUserArticlesResolverService, getUser: GetUserInfoResolverService } },
   { path: 'my-profile', component: UserProfileComponent, resolve: { getArticles: GetLoggedUserArticlesResolverService, getUser: GetLoggedUserInfoResolverService } },
   { path: 'notFound', component: PageNotFoundComponent },
-  { path: 'redirect', component: RedirectToDictComponent}
+  { path: 'redirect', component: RedirectToDictComponent},
+  { path: 'redirect\0\0', component: RedirectToDictComponent}
+
+
 ];
 
 @NgModule({
