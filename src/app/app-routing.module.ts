@@ -17,6 +17,7 @@ import { GetUserArticlesResolverService } from './shared/resolvers/get-user-arti
 import { GetUserInfoResolverService } from './shared/resolvers/get-user-info-resolver.service';
 import { GetLoggedUserInfoResolverService } from './shared/resolvers/get-logged-user-info-resolver.service';
 import { GetLoggedUserArticlesResolverService } from './shared/resolvers/get-logged-user-articles-resolver.service';
+import { RedirectToDictComponent } from './redirect-to-dict/redirect-to-dict.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
@@ -31,7 +32,8 @@ const routes: Routes = [
   { path: 'sign-up', component: AuthComponent, data: {mode: 'sign-up'}, canDeactivate: [UserRegistrationGuardService] },
   { path: 'user-profile/:id', component: UserProfileComponent, resolve: { getArticles: GetUserArticlesResolverService, getUser: GetUserInfoResolverService } },
   { path: 'my-profile', component: UserProfileComponent, resolve: { getArticles: GetLoggedUserArticlesResolverService, getUser: GetLoggedUserInfoResolverService } },
-  { path: 'notFound', component: PageNotFoundComponent }
+  { path: 'notFound', component: PageNotFoundComponent },
+  { path: 'redirect', component: RedirectToDictComponent}
 ];
 
 @NgModule({

@@ -15,6 +15,7 @@ import { HighlightDirective } from './shared/directives/highlight.directive';
 import { ShortenTextPipe } from './shared/pipes/shorten-text.pipe';
 import { AuthComponent } from './auth/auth.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
+import { RedirectToDictComponent } from './redirect-to-dict/redirect-to-dict.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
     ShortenTextPipe,
     AuthComponent,
     UserProfileComponent,
+    RedirectToDictComponent,
   ],
   imports: [
     BrowserModule,
